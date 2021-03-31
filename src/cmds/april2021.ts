@@ -41,7 +41,15 @@ class April2020 extends Command {
         this.db.set(`servers.${message.guild!.id}.active`, false).write();
         return message.util!.reply('Paused successfully');
       case 'revert':
-        return message.util!.reply('Reverting old nicknames');
+        message.util!.reply('Reverting old nicknames');
+        // eslint-disable-next-line no-case-declarations
+        const oldNicknames = this.db.get(`servers.${message.guild!.id}.oldNicknames`).value();
+        message.util!.send(JSON.stringify(oldNicknames));
+        for (const [id, name] of Object.entries(oldNicknames)) {
+          const user = message.guild.member(id)
+          user.
+        }
+        return message.util!.reply('Old nicknames successfully reverted');
       default:
         return message.util!.reply('Invalid action. Valid actions are `start`, `pause` and `revert`');
     }

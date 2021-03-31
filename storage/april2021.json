@@ -1,7 +1,10 @@
 {
   "servers": {
     "282951027001393152": {
-      "active": false
+      "active": false,
+      "oldNicknames": {
+        "159744245517778945": "fakeNickname"
+      }
     }
   }
 }
