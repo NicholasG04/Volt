@@ -3,6 +3,10 @@ import { Message } from 'discord.js';
 import type low from 'lowdb';
 import db from '../util/db';
 
+interface OldNicknames {
+  [key: string]: string;
+}
+
 class April2020 extends Command {
   db: low.LowdbSync<any>;
 
@@ -43,11 +47,11 @@ class April2020 extends Command {
       case 'revert':
         message.util!.reply('Reverting old nicknames');
         // eslint-disable-next-line no-case-declarations
-        const oldNicknames = this.db.get(`servers.${message.guild!.id}.oldNicknames`).value();
+        const oldNicknames: OldNicknames = this.db.get(`servers.${message.guild!.id}.oldNicknames`).value();
         message.util!.send(JSON.stringify(oldNicknames));
         for (const [id, name] of Object.entries(oldNicknames)) {
-          const user = message.guild.member(id)
-          user.
+          const user = message.guild!.member(id)
+          user!.setNickname(name, 'Revert April Fools').catch(e => console.log(`No perms for user ${user!.user.username}`))
         }
         return message.util!.reply('Old nicknames successfully reverted');
       default:
