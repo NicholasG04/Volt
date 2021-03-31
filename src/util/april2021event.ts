@@ -4,7 +4,7 @@ import db from './db';
 const april2021event = (message: Message) => {
   const serverId = message.guild!.id;
   const userId = message.member!.id;
-  const currentNick = message.member!.nickname;
+  const currentNick = message.member!.displayName;
 
   if (db.get(`servers.${serverId}.active`).value() !== 'true') return;
   if (currentNick === '@everyone') return;
