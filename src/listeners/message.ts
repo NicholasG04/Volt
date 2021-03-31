@@ -1,6 +1,6 @@
 import { Listener } from 'discord-akairo';
 import type { Message } from 'discord.js';
-import april2021event from '../util/april2021event'
+import april2021event from '../util/april2021event';
 
 class MessageListener extends Listener {
   constructor() {
