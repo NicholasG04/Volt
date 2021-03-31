@@ -3,8 +3,8 @@ import { Message } from 'discord.js';
 
 class April2020 extends Command {
   constructor() {
-    super('april2020', {
-      aliases: ['april2020'],
+    super('april2021', {
+      aliases: ['april2021'],
       args: [
         {
           id: 'action',
