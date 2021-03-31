@@ -4,7 +4,7 @@
   "description": "Discord Bot for the ScatterVolt Discord Server",
   "main": "dist/bot.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn src/bot.ts",
+    "dev": "ts-node-dev --respawn src/bot.ts --watch src/**/*",
     "build": "tsc"
   },
   "repository": {

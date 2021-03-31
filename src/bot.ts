@@ -1,8 +1,10 @@
-import { AkairoClient, CommandHandler } from 'discord-akairo';
+import { AkairoClient, CommandHandler, ListenerHandler } from 'discord-akairo';
 import { TOKEN } from './config';
 
 class VoltClient extends AkairoClient {
   commandHandler: CommandHandler;
+
+  listenerHandler: ListenerHandler;
 
   constructor() {
     super({
@@ -17,7 +19,14 @@ class VoltClient extends AkairoClient {
       commandUtil: true,
     });
 
+    this.listenerHandler = new ListenerHandler(this, {
+      directory: './src/listeners/',
+    });
+
     this.commandHandler.loadAll();
+
+    this.commandHandler.useListenerHandler(this.listenerHandler);
+    this.listenerHandler.loadAll();
   }
 }
 

@@ -16,6 +16,7 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        "max-len": 0
+        "max-len": 0,
+        "class-methods-use-this": 0
     }
 };
