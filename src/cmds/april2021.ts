@@ -1,7 +1,7 @@
 import { Command } from 'discord-akairo';
 import { Message } from 'discord.js';
-import low from 'lowdb';
-import FileSync from 'lowdb/adapters/FileSync';
+import type low from 'lowdb';
+import db from '../util/db';
 
 class April2020 extends Command {
   db: low.LowdbSync<any>;
@@ -20,11 +20,7 @@ class April2020 extends Command {
       channel: 'guild',
     });
 
-    const adapter = new FileSync('storage/april2021.json');
-    this.db = low(adapter);
-
-    this.db.defaults({ servers: [] })
-      .write();
+    this.db = db;
   }
 
   // @ts-ignore
@@ -37,11 +33,13 @@ class April2020 extends Command {
     if (!args.action) return message.util!.reply('Please specify an action. Valid actions are `start`, `pause` and `revert`');
     switch (args.action) {
       case 'start':
-        message.util!.reply('Powering up April Fools 2020');
-
-        return message.util!.reply('April Fools 2020 is successfully initialised');
+        message.util!.reply('Powering up April Fools 2021');
+        this.db.set(`servers.${message.guild!.id}.active`, true).write();
+        return message.util!.reply('April Fools 2021 is successfully initialised');
       case 'pause':
-        return message.util!.reply('Pausing changing nicknames but NOT reverting old ones');
+        message.util!.reply('Pausing changing nicknames but NOT reverting old ones');
+        this.db.set(`servers.${message.guild!.id}.active`, false).write();
+        return message.util!.reply('Paused successfully');
       case 'revert':
         return message.util!.reply('Reverting old nicknames');
       default:
