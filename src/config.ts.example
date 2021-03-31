@@ -1,0 +1,7 @@
+/* eslint-disable import/prefer-default-export */
+
+const config = {
+  TOKEN: 'abc',
+}
+
+export const { TOKEN } = config;
