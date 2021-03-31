@@ -4,6 +4,9 @@ dist/
 # Config File
 src/config.ts
 
+# Storage
+storage/*
+
 # Logs
 logs
 *.log
